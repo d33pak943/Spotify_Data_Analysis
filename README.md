@@ -1,9 +1,15 @@
 # Spotify_Data_Analysis SQL Project and Query Optimization
 
 ![Spotify Logo](https://github.com/najirh/najirh-Spotify-Data-Analysis-using-SQL/blob/main/spotify_logo.jpg)
+![image](https://github.com/user-attachments/assets/5c0734ce-9904-4c6a-93cb-ee31dca1e05a)
 
 ## Overview
 This project involves analyzing a Spotify dataset with various attributes about tracks, albums, and artists using **SQL**. It covers an end-to-end process of normalizing a denormalized dataset, performing SQL queries  and optimizing query performance. The primary goals of the project are to practice advanced SQL skills and generate valuable insights from the dataset.
+###  Database Setup
+
+- **Database Creation**: The project starts by creating a database named `spotify_db`.
+- **Table Creation**: A table named `spotify` is created to store the sales data. The table structure includes columns for Artist, Track, Album, Album_type, Danceability, Energy, Loudness, Speechiness, Acousticness, Instrumentalness, Liveness, Valence, Tempo, Duration_min, Title, Channel, Views, Likes, Comments, Licensed, official_video, Stream, EnergyLiveness,most_played_on
+
 
 ```sql
 -- create table
@@ -58,36 +64,36 @@ In advanced stages, the focus shifts to improving query performance. Some optimi
   
 ---
 
-## 15 Practice Questions
-1. Retrieve the names of all tracks that have more than 1 billion streams.
+## Data Analysis & Findings
+1.**Retrieve the names of all tracks that have more than 1 billion streams.**
 ```sql
 SELECT 
    track 
 FROM spotify
 WHERE Stream > 1000000000;
 ```
-2. List all albums along with their respective artists.
+2. **List all albums along with their respective artists.**
 ```sql
 SELECT 
    DISTINCT album,
    artist 
 FROM spotify;
 ```
-3. Get the total number of comments for tracks where `licensed = TRUE`.
+3.**Get the total number of comments for tracks where `licensed = TRUE`.**
 ```sql
 SELECT 
    SUM(comments) as total_comments 
 FROM spotify
 WHERE licensed = 'true';
 ```
-4. Find all tracks that belong to the album type `single`.
+4.**Find all tracks that belong to the album type `single`.**
 ```sql
 SELECT 
    track  
 FROM spotify
 WHERE album_type = 'single' ;
 ```
-5. Count the total number of tracks by each artist.
+5. **Count the total number of tracks by each artist.**
 ```sql
 SELECT 
    artist,
@@ -96,7 +102,7 @@ FROM spotify
 GROUP BY 1
 ORDER BY 2 ;
 ```
-6. Calculate the average danceability of tracks in each album.
+6. **Calculate the average danceability of tracks in each album.**
 ```sql
 SELECT 
    album,
@@ -105,7 +111,7 @@ FROM spotify
 GROUP BY 1
 ORDER BY 2 DESC;
 ```
-7. Find the top 5 tracks with the highest energy values.
+7.**Find the top 5 tracks with the highest energy values.**
 ```sql
 SELECT 
    track,
@@ -115,7 +121,7 @@ GROUP BY 1
 ORDER BY 2 DESC
 LIMIT 5;
 ```
-8. List all tracks along with their views and likes where `official_video = TRUE`.
+8.**List all tracks along with their views and likes where `official_video = TRUE`.**
 ```sql
 SELECT 
    track,
@@ -125,7 +131,7 @@ FROM spotify
 WHERE official_video='true'
 GROUP BY 1;
 ```
-9. For each album, calculate the total views of all associated tracks.
+9.**For each album, calculate the total views of all associated tracks.**
 ```sql
 SELECT 
    album,
@@ -135,20 +141,20 @@ FROM spotify
 GROUP BY 1,2
 ORDER BY 3 DESC;
 ```
-10. Retrieve the track names that have been streamed on Spotify more than YouTube.
+10.**Retrieve the track names that have been streamed on Spotify more than YouTube.**
 ```sql
 SELECT 
    track 
 FROM spotify
 WHERE most_played_on = 'Spotify';
 ```
-11. Find the top 3 most-viewed tracks for each artist using window functions.
+11.**Find the top 3 most-viewed tracks for each artist using window functions.**
 ```sql
 SELECT *
 FROM retail_sales
 WHERE sale_date = '2022-11-05';
 ```
-12. Write a query to find tracks where the liveness score is above the average.
+12.**Write a query to find tracks where the liveness score is above the average.**
 ```sql
 SELECT *
 FROM retail_sales
@@ -172,8 +178,8 @@ FROM cte
 ORDER BY 2 DESC
 ```
    
-14. Find tracks where the energy-to-liveness ratio is greater than 1.2.
-15. Calculate the cumulative sum of likes for tracks ordered by the number of views, using window functions.
+14.**Find tracks where the energy-to-liveness ratio is greater than 1.2.**
+15.**Calculate the cumulative sum of likes for tracks ordered by the number of views, using window functions.**
 
 
 Here’s an updated section for your **Spotify Advanced SQL Project and Query Optimization** README, focusing on the query optimization task you performed. You can include the specific screenshots and graphs as described.
