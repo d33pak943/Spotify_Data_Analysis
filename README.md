@@ -5,6 +5,30 @@
 
 ## Overview
 This project involves analyzing a Spotify dataset with various attributes about tracks, albums, and artists using **SQL**. It covers an end-to-end process of normalizing a denormalized dataset, performing SQL queries  and optimizing query performance. The primary goals of the project are to practice advanced SQL skills and generate valuable insights from the dataset.
+## Project Steps
+
+### 1. Data Exploration
+Before diving into SQL, it’s important to understand the dataset thoroughly. The dataset contains attributes such as:
+- `Artist`: The performer of the track.
+- `Track`: The name of the song.
+- `Album`: The album to which the track belongs.
+- `Album_type`: The type of album (e.g., single or album).
+- Various metrics such as `danceability`, `energy`, `loudness`, `tempo`, and more.
+
+### 2. Querying the Data
+After the data is inserted, various SQL queries can be written to explore and analyze the data.
+- Simple data retrieval, filtering, and basic aggregations.
+- More complex queries involving grouping, aggregation functions, and joins.
+- Nested subqueries, window functions, CTEs, and performance optimization.
+
+### 3. Query Optimization
+In advanced stages, the focus shifts to improving query performance. Some optimization strategies include:
+- **Indexing**: Adding indexes on frequently queried columns.
+- **Query Execution Plan**: Using `EXPLAIN ANALYZE` to review and refine query performance.
+  
+---
+## Project Procedure
+
 ###  Database Setup
 
 - **Database Creation**: The project starts by creating a database named `spotify_db`.
@@ -41,28 +65,22 @@ CREATE TABLE spotify (
     most_played_on VARCHAR(50)
 );
 ```
-## Project Steps
 
-### 1. Data Exploration
-Before diving into SQL, it’s important to understand the dataset thoroughly. The dataset contains attributes such as:
-- `Artist`: The performer of the track.
-- `Track`: The name of the song.
-- `Album`: The album to which the track belongs.
-- `Album_type`: The type of album (e.g., single or album).
-- Various metrics such as `danceability`, `energy`, `loudness`, `tempo`, and more.
-
-### 2. Querying the Data
-After the data is inserted, various SQL queries can be written to explore and analyze the data.
-- Simple data retrieval, filtering, and basic aggregations.
-- More complex queries involving grouping, aggregation functions, and joins.
-- Nested subqueries, window functions, CTEs, and performance optimization.
-
-### 3. Query Optimization
-In advanced stages, the focus shifts to improving query performance. Some optimization strategies include:
-- **Indexing**: Adding indexes on frequently queried columns.
-- **Query Execution Plan**: Using `EXPLAIN ANALYZE` to review and refine query performance.
-  
----
+### Exploratory Data Analysis
+```sql
+SELECT COUNT(*) FROM spotify;
+SELECT COUNT(DISTINCT artist) FROM spotify;
+SELECT COUNT(DISTINCT album) FROM spotify;
+SELECT DISTINCT album_type FROM spotify;
+SELECT MAX(duration_min) FROM spotify;
+SELECT MIN(duration_min) FROM spotify;
+SELECT * FROM spotify
+WHERE duration_min=0;
+DELETE FROM spotify
+WHERE duration_min=0;
+SELECT DISTINCT channel FROM spotify;
+SELECT DISTINCT most_played_on FROM spotify;
+```
 
 ## Data Analysis & Findings
 1.**Retrieve the names of all tracks that have more than 1 billion streams.**
@@ -199,10 +217,30 @@ ORDER BY 2 DESC;
 ```
    
 14.**Find tracks where the energy-to-liveness ratio is greater than 1.2.**
+```sql
+WITH ctee
+AS
+(SELECT
+    track,
+	SUM(energy) as total_energy,
+	SUM(liveness) as total_liveness
+FROM spotify
+GROUP BY 1
+)
+SELECT
+   track
+FROM ctee
+WHERE (total_energy/total_liveness)>1.2;
+```
 15.**Calculate the cumulative sum of likes for tracks ordered by the number of views, using window functions.**
-
-
-Here’s an updated section for your **Spotify Advanced SQL Project and Query Optimization** README, focusing on the query optimization task you performed. You can include the specific screenshots and graphs as described.
+```sql
+SELECT 
+    track,
+	views,
+	likes,
+	SUM(likes) OVER(PARTITION BY track ORDER BY views) as cumulative_likes
+FROM spotify;
+```
 
 ---
 
