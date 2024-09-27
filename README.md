@@ -283,15 +283,10 @@ This optimization shows how indexing can drastically reduce query time, improvin
 ## Technology Stack
 - **Database**: PostgreSQL
 - **SQL Queries**: DDL, DML, Aggregations, Joins, Subqueries, Window Functions
-- **Tools**: pgAdmin 4, PostgreSQL (via Homebrew, Docker, or direct installation)
+- **Tools**: pgAdmin 4, PostgreSQL 
 
 
 ---
-
-## Next Steps
-- **Visualize the Data**: Use a data visualization tool like **Tableau** or **Power BI** to create dashboards based on the query results.
-- **Expand Dataset**: Add more rows to the dataset for broader analysis and scalability testing.
-- **Advanced Querying**: Dive deeper into query optimization and explore the performance of SQL queries on larger datasets.
 
 
 ## License
