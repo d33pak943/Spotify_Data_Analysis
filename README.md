@@ -195,7 +195,7 @@ SELECT
 	album,
 	highest_energy - lowest_energery as energy_diff
 FROM cte
-ORDER BY 2 DESC
+ORDER BY 2 DESC;
 ```
    
 14.**Find tracks where the energy-to-liveness ratio is greater than 1.2.**
