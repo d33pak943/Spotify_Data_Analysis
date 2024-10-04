@@ -1,6 +1,6 @@
 # Spotify_Data_Analysis SQL Project and Query Optimization
 
-![Spotify Logo](https://github.com/najirh/najirh-Spotify-Data-Analysis-using-SQL/blob/main/spotify_logo.jpg)
+![Spotify Logo](https://github.com/d33pak943/Spotify_Data_Analysis/blob/main/resources/spotify_logo.jpg)
 ![image](https://github.com/user-attachments/assets/5c0734ce-9904-4c6a-93cb-ee31dca1e05a)
 
 ## Overview
